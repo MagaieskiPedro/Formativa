@@ -2,6 +2,7 @@ import {Routes, Route} from 'react-router-dom';
 import { Login } from '../Paginas/Login';
 import { Menu } from '../Paginas/Menu';
 import { Inicial } from '../componentes/Inicial';
+import { Cadastro } from '../Paginas/Cadastro';
 
 export function Rotas(){
     return(
@@ -9,6 +10,7 @@ export function Rotas(){
                 <Route path="/" element={<Inicial/>}>
                     <Route index element={<Menu/>}/>
                     <Route path='login' element={<Login/>}/>
+                    <Route path='cadastro' element={<Cadastro/>}/>
                 </Route>
             </Routes>
     )

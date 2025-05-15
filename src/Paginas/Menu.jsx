@@ -5,16 +5,16 @@ export function Menu(){
             <table>
                     <tr>
                         <td>
-                            Professores
-                        </td>
-                        <td>
                             Gestores
                         </td>
                         <td>
-                            Discilplina
+                            Professores
                         </td>
                         <td>
-                            Ambiente
+                            Disciplinas
+                        </td>
+                        <td>
+                            Ambientes Reservados
                         </td>
                     </tr>
             </table>

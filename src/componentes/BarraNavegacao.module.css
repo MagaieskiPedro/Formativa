@@ -1,8 +1,8 @@
 .container{
     display: flex;
     justify-content: center;
-    height: 40px;
-    background-color:deepskyblue;
+    height: 25px;
+    background-color:rgba(48, 186, 120, 0.8);
 }
 
 .container ul{
@@ -18,7 +18,7 @@
     align-items: center;
     justify-content: center;
     padding: 10px;
-    color: rgba(236,233,228);
+    color: rgba(12, 50, 44, 0.8);
     font-size: 16px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }

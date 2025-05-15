@@ -11,8 +11,8 @@ export function BarraNavegacao(){
             <Link to="/Login">
                 <li>Login</li>
             </Link>
-            <Link to="/Menu">
-                <li>Missão</li>
+            <Link to="/Cadastro">
+                <li>Cadastro</li>
             </Link>
                 <li>Visão</li>
                 <li>Valores</li>
