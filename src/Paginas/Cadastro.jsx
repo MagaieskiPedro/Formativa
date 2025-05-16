@@ -1,30 +1,85 @@
 import estilo from './Cadastro.module.css'
+import axios from 'axios';
+import React, {useState} from 'react';
+
+const API_URL = 'http://127.0.0.1:8000'
 export function Cadastro(){
+        const [formData,setFormData] = useState({
+            ni: '',
+            nome: '',
+            password: '',
+            password2: '',
+            telefone: '',
+            categoria: '',
+            data_nascimento: '',
+            data_contratação: ''
+        });
+
+
+        const handleChange = (e) => {
+            setFormData({ ...formData, [e.target.name]: e.target.value });
+        };
+        const handleSubmit = async (e) => {
+            e.preventDefault();
+            try{
+                const response = await axios.post(`${API_URL}/api/cadastro/`,formData)
+                console.log('Dados Enviados sucesso: ', response.data)
+            } catch (error){
+                console.error('Erro ao enviar dados: ',error,formData)
+            }
+        };
     return(
         <main className={estilo.container}>
-                <form method='post' className={estilo.formFlex}>
-                    <h2 className={estilo.titulo}>Entrar</h2>
-                    <input className={estilo.input} type="text" name='nome' placeholder='Nome de usuario'/>
+                <form onSubmit={handleSubmit} className={estilo.formFlex}>
+                    <h2 className={estilo.titulo}>Cadastre-se</h2>
+                    <input className={estilo.input} type="text" name='nome' placeholder='Nome de usuario' 
+                    defaultValue={formData.nome} 
+                    onChange={handleChange} />
                     <div className={estilo.formGrid}>
-                        <input className={estilo.input} type="text" name='ni' placeholder='Numero de identificação'/>
-                        <input className={estilo.input} type="text" name='telefone' placeholder='Telefone'/>
-                        <label for='Data Nascimento'>Data Nascimento
-                            <input className={estilo.input} type="date" name='Data Nascimento' placeholder='Data de nascimento'/>
+                        <input className={estilo.input} type="text" name='ni' placeholder='Numero de identificação'
+                        defaultValue={formData.ni}
+                        onChange={handleChange}/>
+                        <input className={estilo.input} type="text" name='telefone' placeholder='Telefone'
+                        defaultValue={formData.telefone}
+                        onChange={handleChange}/>
+                        <label htmlFor='Data de nascimento'>Data Nascimento
+                            <input className={estilo.input} type="date" name='data_nascimento' placeholder='Data de nascimento' 
+                            defaultValue={formData.data_nascimento}
+                            onChange={handleChange}/>
                         </label>
-                        <label for='Data de contratação'>Data de contratação
-                            <input className={estilo.input} type="date" name='Data de contratação' placeholder='Data de contratação'/>
+                        <label htmlFor='Data de contratação'>Data de contratação
+                            <input className={estilo.input} type="date" name='data_contratação' placeholder='Data de contratação'
+                            defaultValue={formData.data_contratação} 
+                            onChange={handleChange}/>
                         </label>
+                        <input className={estilo.input} type="password" name='password' placeholder='Senha'
+                            defaultValue={formData.password}
+                            onChange={handleChange} />
+                        <input className={estilo.input} type="password" name='password2' placeholder='Confirme sua Senha'
+                            defaultValue={formData.password2} 
+                            onChange={handleChange} />
                         
-                        <input className={estilo.input} type="password" name="password" placeholder='Senha'/>
-                        <input className={estilo.input} type="password" name="password2" placeholder='Confirme sua Senha'/>
-                        <label for="C" className={estilo.put}>Usuario comum
-                            <input type="radio" name="categoria" value="C"/>
+                        <label>
+                            Usuario comum
+                            <input 
+                            type="radio" 
+                            name="categoria" 
+                            value="C"
+                            checked={formData.categoria  === "C"}
+                            onChange={handleChange}/>
                         </label>
-                        <label for="G" >Usuario gestor
-                            <input type="radio" name="categoria" value="G"/>
+                        <label>
+                            Usuario gestor
+                            <input 
+                            type="radio"
+                            name="categoria"
+                            value="G"
+                            checked={formData.categoria === "G"}
+                            onChange={handleChange}/>
                         </label>
+                        <p>Selected : {formData.categoria}</p>
                     </div>
-                    <input className={estilo.submit} type="submit" value="Submit"/>
+                    <input className={estilo.submit} type="submit" />
                 </form>
         </main>
     )

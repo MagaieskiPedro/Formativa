@@ -29,10 +29,10 @@ table{
 
 }
 
-td{
+th{
     text-align:center;
     vertical-align: text-top;
-    color: rgba(12, 50, 44, 1);
+    color: cornflowerblue;
     font-weight: bold;
     border-radius: 6px;
 

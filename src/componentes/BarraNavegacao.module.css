@@ -2,7 +2,7 @@
     display: flex;
     justify-content: center;
     height: 25px;
-    background-color:rgba(48, 186, 120, 0.8);
+    background-color:#54B8FF;
 }
 
 .container ul{
@@ -18,12 +18,12 @@
     align-items: center;
     justify-content: center;
     padding: 10px;
-    color: rgba(12, 50, 44, 0.8);
+    color: #030303;
     font-size: 16px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-decoration: none;
 }
 
 .container li a.active{
-    color:rgba(138,76, 97);
     text-decoration: none;
 }

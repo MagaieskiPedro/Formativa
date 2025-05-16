@@ -32,18 +32,18 @@ main{
     border: none;
     outline: none;
     text-align: center;
-    background-color: rgba(12, 50, 44, 0.9);
-    color: rgb(235,235,235);
+    background-color: #0076cb;
+    color: #ffffff;
     width: 10rem;
     height: 1.5rem;
 }
 .submit:hover{
-    background-color: rgba(48, 186, 120, 0.9); 
-    color: rgba(12, 50, 44, 0.9);
+    background-color: #ffffff; 
+    color: #0076cb;
 }
 
 .titulo{
-    color: rgba(12, 50, 44, 0.9);
+    color: #0076cb;
     font-size: 1.25rem;
     max-width: 8.5rem;
 }
