@@ -31,6 +31,7 @@ main{
     display: grid;
     grid-template-columns: 1fr 1fr ;
     row-gap: 2rem;
+    column-gap: 2rem;
     flex-direction: column;
     justify-content: space-evenly;
 }
@@ -61,6 +62,7 @@ main{
     outline: none;
     width: 17rem;
     height: 1.5rem;
+    display: block;
 }
 
 .input::placeholder{
@@ -72,5 +74,7 @@ input[type='radio']{
     height: 50%;
     display: flex;
 }
-
+.label{
+    display: block;
+}
 
