@@ -1,10 +1,12 @@
 import estilo from './Cadastro.module.css'
 import axios from 'axios';
 import React, {useState} from 'react';
+import {useNavigate} from 'react-router-dom'
 
 
 const API_URL = 'http://127.0.0.1:8000'
 export function Cadastro(){
+        const navigate = useNavigate();
         const [formData,setFormData] = useState({
             ni: '',
             nome: '',
@@ -25,9 +27,11 @@ export function Cadastro(){
             try{
                 const response = await axios.post(`${API_URL}/api/cadastro/`,formData)
                 console.log('Dados Enviados sucesso: ', response.data)
+                navigate('/home');
             } catch (error){
                 console.error('Erro ao enviar dados: ',error,formData)
             }
+            
         };
     return(
         <main className={estilo.container}>
