@@ -1,4 +1,4 @@
-import estilo from './Menu.module.css'
+import estilo from './Disciplinas.module.css'
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
@@ -53,7 +53,7 @@ export function Disciplinas(){
                         </th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody className={estilo.centro}>
                 {data.map((item) => (
                     <tr key={item.id}>
                         <td>{item.nome}</td>

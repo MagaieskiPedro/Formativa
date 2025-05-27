@@ -80,4 +80,16 @@ input[type='date']{
 .label{
     display: block;
 }
+.select{
+    border-radius: 6px;
+    border: none;
+    outline: none;
+    width: 17rem;
+    height: 1.5rem;
+    display: block;
+}
+.erro{
+    font-size: small;
+    color: crimson;
+}
 

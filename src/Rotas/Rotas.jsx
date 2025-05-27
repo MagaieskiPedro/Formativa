@@ -11,7 +11,7 @@ export function Rotas(){
     return(
             <Routes>
                 <Route path="/" element={<Inicial/>}>
-                    <Route path='home' index element={<Home/>}/>
+                    <Route path='/' index element={<Home/>}/>
                     <Route path='ambientes' element={<Ambientes/>}/>
                     <Route path='cadastro' element={<Cadastro/>}/>
                     <Route path='disciplinas' element={<Disciplinas/>}/>

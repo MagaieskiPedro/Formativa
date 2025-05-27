@@ -58,3 +58,7 @@ main{
 .input::placeholder{
     text-align: start;
 }
+.erro{
+    font-size: small;
+    color: crimson;
+}

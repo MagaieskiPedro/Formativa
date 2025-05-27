@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import estilo from './Menu.module.css'
+import estilo from './Ambientes.module.css'
 import { useEffect } from 'react'
 import axios from "axios"
 
@@ -52,7 +52,7 @@ export function Ambientes(){
                         </th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody className={estilo.centro}>
                 {data.map((item) => (
                     <tr key={item.id}>
                         <td>{item.data_inicio}</td>

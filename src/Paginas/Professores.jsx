@@ -1,4 +1,4 @@
-import estilo from './Menu.module.css'
+import estilo from './Professores.module.css'
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { ta, tr } from 'zod/v4/locales';
@@ -54,7 +54,7 @@ export function Professores(){
                         </th>
                     </tr>
                 </thead>
-                    <tbody>
+                    <tbody className={estilo.centro}>
                         {data.map((item) => (
                             <tr key={item.id}>
                                 <td>{item.nome}</td>
