@@ -9,7 +9,7 @@ export function Ambientes(){
 
     const [data, setData] = useState([]);
     const access_token = localStorage.getItem('access_token')
-    console.log(access_token)
+    // console.log(access_token)
     const obterDados = async() => {
         try {
             const response = await axios.get(`${API_URL}/api/reservaAmbiente`, {
@@ -18,12 +18,26 @@ export function Ambientes(){
                     'Content-Type': 'application/json'
                   }
             });
-            console.log("Dados: ", response.data)
+            // console.log("Dados: ", response.data[1].id)
             setData(response.data)
         }catch (error) {
             console.log('error: ', error)
         }
     };
+
+    const deletarDado = async (IDNTY) => {
+        try{
+           const response = await axios.delete(`${API_URL}/api/reservaAmbiente/${IDNTY}`, {
+                headers: {
+                    'Authorization': `Bearer ${access_token}`,
+                    'Content-Type': 'application/json'
+                  }
+            });
+            obterDados()
+        }catch (error) {
+            console.log('error: ', error)
+        }
+    }
 
     useEffect(() => {
         obterDados();
@@ -31,6 +45,7 @@ export function Ambientes(){
 
     return(
         <main className={estilo.container}>
+            {/* <button className={estilo.criar} onClick={openModal}>Criar novo</button> */}
             {data.length > 0 ? (
             <table>
                 <thead>
@@ -60,6 +75,8 @@ export function Ambientes(){
                         <td>{item.periodo}</td>
                         <td>{item.sala}</td>
                         <td>{item.professor}</td>
+                        <td><button className={estilo.editar} onClick={() => editarDado(item.id)}>Editar</button></td>
+                        <td><button className={estilo.deletar} onClick={() =>deletarDado(item.id)}>Deletar</button></td>
                     </tr>
                 ))}
                 </tbody>

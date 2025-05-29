@@ -7,11 +7,11 @@ import {z} from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import {useNavigate} from 'react-router-dom'
 
-
+// Url base da api
 const API_URL = 'http://127.0.0.1:8000'
 
+// Validação zod
 const schemaLogin = z.object({
-
     username: z.string()
         .min(1,'Informe seu nome')
         .max(15, 'Informe um nome de até 15 caracteres'),
@@ -30,13 +30,17 @@ const schemaLogin = z.object({
         .max(15, 'Informe uma senha de até 15 caracteres'),
     password2: z.string()
         .min(1,'Confirme sua senha')
-        .max(15, 'Confirme uma senha de até 15 caracteres')
+        .max(15, 'Confirme uma senha de até 15 caracteres'),
+    categoria: z.string()
+        .min(1,"categoria faltando")
 })
 
 
 export function Cadastro(){
+        // navegação por rotas 
         const navigate = useNavigate();
 
+        // recebe dados do formulario e valida/ devolve erros
         const{
                 register,
                 handleSubmit,
@@ -45,61 +49,32 @@ export function Cadastro(){
                 resolver: zodResolver(schemaLogin)
         })
 
-        async function obterDadosFormulario(data){
+        // Função de post do formulario
+       const enviarDadosFormulario = async(data) =>{
             console.log(`Dados: ${data}`)
             try{
-                const response = await axios.post(`${API_URL}/api/token/`,{
-                                ni: data.ni,
-                                username: data.username,
-                                password: data.password,
-                                password2: data.password2,
-                                telefone: data.telefone,
-                                categoria: data.categoria,
-                                data_nascimento: data.data_nascimento,
-                                data_contratação: data.data_contratação
+                const response = await axios.post(`${API_URL}/api/cadastro/`,{
+                                'ni': data.ni,
+                                'nome': data.username,
+                                'password': data.password,
+                                'password2': data.password2,
+                                'telefone': data.telefone,
+                                'categoria': data.categoria,
+                                'data_nascimento': data.data_nascimento,
+                                'data_contratação': data.data_contratação
                             });
                 const { professor } = response.data;
-                localStorage.setItem('access_token', access);
-                localStorage.setItem('refresh_token', refresh);
-                localStorage.setItem('categoria', professor.categoria);
-                    // localStorage.setItem('user_id', user.id);
-                localStorage.setItem('username',professor.username)
-                console.log("daditos: "+ professor.id)
                 navigate('/')
     
             }catch(error){
-                console.error('erro no login', error);
-                alert('credenciais inválidas')
+                console.error('erro no cadastro: ', error);
+                alert('erro no cadastro:')
             }
         }
 
-        // const [formData,setFormData] = useState({
-        //     ni: '',
-        //     nome: '',
-        //     password: '',
-        //     password2: '',
-        //     telefone: '',
-        //     categoria: '',
-        //     data_nascimento: '',
-        //     data_contratação: ''
-        // });
-        // const handleChange = (e) => {
-        //     setFormData({ ...formData, [e.target.name]: e.target.value });
-        // };
-        // const handleSubmit = async (e) => {
-        //     e.preventDefault();
-        //     try{
-        //         const response = await axios.post(`${API_URL}/api/cadastro/`,formData)
-        //         console.log('Dados Enviados sucesso: ', response.data)
-        //         navigate('/home');
-        //     } catch (error){
-        //         console.error('Erro ao enviar dados: ',error,formData)
-        //     }
-            
-        // };
     return(
         <main className={estilo.container}>
-                <form onSubmit={handleSubmit(obterDadosFormulario)} className={estilo.formFlex}>
+                <form onSubmit={handleSubmit(enviarDadosFormulario)} className={estilo.formFlex}>
                     <h2 className={estilo.titulo}>Cadastre-se</h2>
                     <label className={estilo.label}>Nome
 
@@ -146,29 +121,9 @@ export function Cadastro(){
                             <option value="C">Comum</option>
                             <option value="G">Gestor</option>
                         </select>
-                        {/* <label className={estilo.label}>
-                            Usuario comum
-                            <input 
-                            type="radio" 
-                            name="categoria" 
-                            value="C"
-                            checked={...register('categoria')}/>
-                        </label>
-                        <label className={estilo.label}>
-                            Usuario gestor
-                            <input 
-                            type="radio"
-                            name="categoria"
-                            value="G"
-                            checked={...register('categoria')}
-                            />
-                        </label> */}
-                        {/* {errors.categoria && <p>{errors.categoria.message}</p>} */}
                     </div>
                     <input className={estilo.submit} type="submit" />
                 </form>
         </main>
-        // defaultValue={formData.nome}
-        // onChange={handleChange}
     )
 }

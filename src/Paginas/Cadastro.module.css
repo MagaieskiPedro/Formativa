@@ -1,3 +1,18 @@
+main{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+}
+input[type='radio']{
+    accent-color: royalblue;
+    width: 30%;
+    height: 50%;
+    display: flex;
+}
+input[type='date']{
+    color: rgba(105,105,105,0.9);;
+}
 .container {
     display: flex;
     justify-content: center;
@@ -9,12 +24,6 @@
     height: 100vh;
     width: 200vh;
     background-size: cover;
-}
-main{
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    justify-content: center;
 }
 .formFlex{
     width: 700px;
@@ -68,15 +77,7 @@ main{
 .input::placeholder{
     text-align: start;
 }
-input[type='radio']{
-    accent-color: royalblue;
-    width: 30%;
-    height: 50%;
-    display: flex;
-}
-input[type='date']{
-    color: rgba(105,105,105,0.9);;
-}
+
 .label{
     display: block;
 }

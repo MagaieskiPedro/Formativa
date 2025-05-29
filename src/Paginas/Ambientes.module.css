@@ -41,3 +41,48 @@ th{
     text-align: center;
     color: crimson;
 }
+.criar{
+    border-radius: 6px;
+    border: none;
+    outline: none;
+    text-align: center;
+    background-color: #0076cb;
+    color: #ffffff;
+    width: 4rem;
+    height: 1.5rem;
+    position: relative;
+    margin-left: 35rem;
+    margin-bottom: 0.4rem;
+}
+.criar:hover{
+    background-color: #ffffff; 
+    color: #0076cb;
+}
+.editar{
+    border-radius: 6px;
+    border: none;
+    outline: none;
+    text-align: center;
+    background-color: #0076cb;
+    color: #ffffff;
+    width: 3rem;
+    height: 1.5rem;
+}
+.editar:hover{
+    background-color: #ffffff; 
+    color: #0076cb;
+}
+.deletar{
+    border-radius: 6px;
+    border: none;
+    outline: none;
+    text-align: center;
+    background-color: crimson;
+    color: #ffffff;
+    width: 3rem;
+    height: 1.5rem;
+}
+.deletar:hover{
+    background-color: red; 
+    color: #ffffff;
+}
