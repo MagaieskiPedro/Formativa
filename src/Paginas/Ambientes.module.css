@@ -41,6 +41,10 @@ th{
     text-align: center;
     color: crimson;
 }
+.centro{
+    text-align: center;
+    color: crimson;
+}
 .criar{
     border-radius: 6px;
     border: none;
@@ -85,4 +89,78 @@ th{
 .deletar:hover{
     background-color: red; 
     color: #ffffff;
+}
+
+
+.modal{
+    margin-left: 37.7rem;
+    margin-top: 20.8rem;
+}
+.formFlex{
+    width: 700px;
+    height: 500px;
+    background-color: rgba(235,235,235,0.9);
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+    justify-content: space-evenly;
+    border-radius: 30px;
+    border: 7px solid darkgray
+}
+.formGrid{
+    display: grid;
+    grid-template-columns: 1fr 1fr ;
+    row-gap: 2rem;
+    column-gap: 2rem;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+.submit{
+    border-radius: 6px;
+    border: none;
+    outline: none;
+    text-align: center;
+    background-color: #0076cb; 
+    color: #FFFFFF;
+    width: 10rem;
+    height: 1.5rem;
+}
+.submit:hover{
+    background-color: #FFFFFF;
+    color: #0076cb;
+}
+
+.titulo{
+    color:#0076cb;
+    font-size: 1.25rem;
+    max-width: 8.5rem;
+    align-items: center !important;
+}
+.input{
+    border-radius: 6px;
+    border: none;
+    outline: none;
+    width: 17rem;
+    height: 1.5rem;
+    display: block;
+}
+
+.input::placeholder{
+    text-align: start;
+}
+
+.label{
+    display: block;
+}
+.select{
+    border-radius: 6px;
+    border: none;
+    outline: none;
+    width: 17rem;
+    height: 1.5rem;
+    display: block;
+}
+.erro{
+    font-size: small;
+    color: crimson;
 }

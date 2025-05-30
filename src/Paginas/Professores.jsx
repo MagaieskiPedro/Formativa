@@ -84,32 +84,54 @@ export function Professores(){
         }
     };
 
-    const obterDadosFormulario = async (data) =>{
+    const obterDadosFormulario = async (data,id) =>{
         console.log(`Dados: ${data.username}`)
-        try{
-            const response = await axios.post(`${API_URL}/api/professores`, {
-                'ni': data.ni,
-                'nome': data.username,
-                'password': data.password,
-                'password2': data.password2,
-                'telefone': data.telefone,
-                'categoria': data.categoria,
-                'data_nascimento': data.data_nascimento,
-                'data_contratação': data.data_contratação
-            },{
-            headers: {
-                'Authorization': `Bearer ${access_token}`,
-                'Content-Type': 'application/json'
-                },
-            });
-            const { professor } = response.data;
-            console.log("id professor: "+ professor.id)
-            navigate('/')
-        }catch(error){
+        if(id){
 
-            console.error('erro no cadastro', data);
-            alert('erro ao cadastrar')
+        }else{
+            try{
+                const response = await axios.post(`${API_URL}/api/professores`, {
+                    'ni': data.ni,
+                    'nome': data.username,
+                    'password': data.password,
+                    'password2': data.password2,
+                    'telefone': data.telefone,
+                    'categoria': data.categoria,
+                    'data_nascimento': data.data_nascimento,
+                    'data_contratação': data.data_contratação
+                },{
+                headers: {
+                    'Authorization': `Bearer ${access_token}`,
+                    'Content-Type': 'application/json'
+                    },
+                });
+                // const { professor } = response.data;
+                closeModal();
+                obterDados();
+            }catch(error){
+    
+                console.error('erro no cadastro', data);
+                alert('erro ao cadastrar')
+            }
         }
+    }
+    
+    const editarDado =  async (IDNTY) => {
+        openModal();
+        obterDadosFormulario(data,IDNTY)
+        console.log(IDNTY)
+        try{
+            const response = await axios.put(`${API_URL}/api/professores/${IDNTY}`, {
+                 headers: {
+                     'Authorization': `Bearer ${access_token}`,
+                     'Content-Type': 'application/json'
+                   }
+             });
+             obterDados();
+             closeModal();
+         }catch (error) {
+             console.log('errinho: ', IDNTY, " - ",  error)
+         }
     }
 
     const deletarDado = async (IDNTY) => {
@@ -160,13 +182,14 @@ export function Professores(){
                 <tbody className={estilo.centro}>
                     {data.map((item) => (
                         <tr key={item.id}>
+                            <td>{item.id}</td>
                             <td>{item.nome}</td>
                             <td>{item.categoria}</td>
                             <td>{item.ni}</td>
                             <td>{item.telefone}</td>
                             <td>{item.data_nascimento}</td>
                             <td>{item.data_contratação}</td>
-                            <td><button className={estilo.editar} onClick={openModal}>Editar</button></td>
+                            <td><button className={estilo.editar} onClick={() => editarDado(item.id)}>Editar</button></td>
                             <td><button className={estilo.deletar} onClick={() =>deletarDado(item.id)}>Deletar</button></td>
                         </tr>
                     ))}
@@ -175,7 +198,7 @@ export function Professores(){
                     isOpen={modalIsOpen}
                     onRequestClose={closeModal}
                     className={estilo.modal}
-                    contentLabel="Example Modal"
+                    contentLabel="Modal registro professor"
                     ariaHideApp={false}
                 >
                     <button onClick={closeModal} className={estilo.deletar} >x</button>

@@ -53,6 +53,7 @@ main{
     outline: none;
     width: 17rem;
     height: 1.5rem;
+    
 }
 
 .input::placeholder{
