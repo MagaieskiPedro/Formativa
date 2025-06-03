@@ -1,3 +1,13 @@
+.container {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    background-repeat: no-repeat;
+    background-image: url('https://images.unsplash.com/photo-1531297484001-80022131f5a1?q=80&w=2020&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+    height: 100vh;
+    width: 200vh;
+}
 main{
     display: flex;
     flex-direction: column;
@@ -8,25 +18,6 @@ main{
     background-size: cover;
 }
 
-input[type='radio']{
-    accent-color: royalblue;
-    width: 30%;
-    height: 50%;
-    display: flex;
-}
-input[type='date']{
-    color: rgba(105,105,105,0.9);;
-}
-.container{
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    align-items: center;
-    background-repeat: no-repeat;
-    background-image: url('https://images.unsplash.com/photo-1531297484001-80022131f5a1?q=80&w=2020&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
-    height: 100vh;
-    width: 200vh;
-}
 .centro{
     text-align: center;
     color: crimson;

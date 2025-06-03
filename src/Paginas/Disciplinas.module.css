@@ -19,24 +19,7 @@ main{
     background-position: center;
     background-size: cover;
 }
-table{
-    width: 700px;
-    height: 500px;
-    background-color: rgba(235,235,235,0.9);
-    padding: 10px;
-    border-radius: 30px;
-    border: 7px solid darkgray;
 
-}
-
-th{
-    text-align:center;
-    vertical-align: text-top;
-    color: #0076cb;
-    font-weight: bold;
-    border-radius: 6px;
-
-}
 .centro{
     text-align: center;
     color: crimson;

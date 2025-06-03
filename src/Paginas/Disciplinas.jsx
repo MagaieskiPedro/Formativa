@@ -5,6 +5,7 @@ import {useNavigate} from 'react-router-dom'
 
 import Modal from 'react-modal'
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 
 import {z} from 'zod';
@@ -103,6 +104,8 @@ export function Disciplinas(){
         }
     }
 
+    
+
     const deletarDado = async (IDNTY) => {
         try{
            const response = await axios.delete(`${API_URL}/api/disciplina/${IDNTY}`, {
@@ -158,7 +161,11 @@ export function Disciplinas(){
                         <td>{item.descrição}</td>
                         <td>{item.professor}</td>
                         <td>{item.ambiente}</td>
-                        <td><button className={estilo.editar} onClick={openModal}>Editar</button></td>
+                        <td>
+                            <Link to={`/disciplinas/${item.id}`} >
+                                    <button className={estilo.editar}>Editar</button>
+                            </Link>
+                        </td>
                         <td><button className={estilo.deletar} onClick={() =>deletarDado(item.id)}>Deletar</button></td>
                     </tr>
                 ))}

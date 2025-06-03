@@ -6,6 +6,7 @@ import {useNavigate} from 'react-router-dom'
 
 import Modal from 'react-modal'
 import axios from "axios"
+import { Link } from 'react-router-dom';
 
 import {z} from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -103,6 +104,7 @@ export function Ambientes(){
         }
     }
 
+
     const deletarDado = async (IDNTY) => {
         try{
            const response = await axios.delete(`${API_URL}/api/reservaAmbiente/${IDNTY}`, {
@@ -154,7 +156,11 @@ export function Ambientes(){
                         <td>{item.periodo}</td>
                         <td>{item.sala}</td>
                         <td>{item.professor}</td>
-                        <td><button className={estilo.editar} onClick={() => editarDado(item.id)}>Editar</button></td>
+                        <td>
+                            <Link to={`/ambientes/${item.id}`} >
+                                    <button className={estilo.editar}>Editar</button>
+                            </Link>
+                        </td>
                         <td><button className={estilo.deletar} onClick={() =>deletarDado(item.id)}>Deletar</button></td>
                     </tr>
                 ))}

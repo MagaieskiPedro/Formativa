@@ -5,6 +5,7 @@ import {useNavigate} from 'react-router-dom'
 import Modal from 'react-modal'
 
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 import {z} from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -77,62 +78,38 @@ export function Professores(){
                     'Content-Type': 'application/json'
                   }
             });
-            // console.log("Dados: ", response.data)
             setData(response.data)
         }catch (error) {
             console.log('error: ', error)
         }
     };
 
-    const obterDadosFormulario = async (data,id) =>{
+    const obterDadosFormulario = async (data) =>{
         console.log(`Dados: ${data.username}`)
-        if(id){
-
-        }else{
-            try{
-                const response = await axios.post(`${API_URL}/api/professores`, {
-                    'ni': data.ni,
-                    'nome': data.username,
-                    'password': data.password,
-                    'password2': data.password2,
-                    'telefone': data.telefone,
-                    'categoria': data.categoria,
-                    'data_nascimento': data.data_nascimento,
-                    'data_contratação': data.data_contratação
-                },{
-                headers: {
-                    'Authorization': `Bearer ${access_token}`,
-                    'Content-Type': 'application/json'
-                    },
-                });
-                // const { professor } = response.data;
-                closeModal();
-                obterDados();
-            }catch(error){
-    
-                console.error('erro no cadastro', data);
-                alert('erro ao cadastrar')
-            }
+        try{
+            const response = await axios.post(`${API_URL}/api/professores`, {
+                'ni': data.ni,
+                'nome': data.username,
+                'password': data.password,
+                'password2': data.password2,
+                'telefone': data.telefone,
+                'categoria': data.categoria,
+                'data_nascimento': data.data_nascimento,
+                'data_contratação': data.data_contratação
+            },{
+            headers: {
+                'Authorization': `Bearer ${access_token}`,
+                'Content-Type': 'application/json'
+                },
+            });
+            closeModal();
+            obterDados();
+        }catch(error){
+            console.error('erro no cadastro', data);
+            alert('erro ao cadastrar')
         }
     }
     
-    const editarDado =  async (IDNTY) => {
-        openModal();
-        obterDadosFormulario(data,IDNTY)
-        console.log(IDNTY)
-        try{
-            const response = await axios.put(`${API_URL}/api/professores/${IDNTY}`, {
-                 headers: {
-                     'Authorization': `Bearer ${access_token}`,
-                     'Content-Type': 'application/json'
-                   }
-             });
-             obterDados();
-             closeModal();
-         }catch (error) {
-             console.log('errinho: ', IDNTY, " - ",  error)
-         }
-    }
 
     const deletarDado = async (IDNTY) => {
         try{
@@ -189,7 +166,11 @@ export function Professores(){
                             <td>{item.telefone}</td>
                             <td>{item.data_nascimento}</td>
                             <td>{item.data_contratação}</td>
-                            <td><button className={estilo.editar} onClick={() => editarDado(item.id)}>Editar</button></td>
+                            <td>
+                            <Link to={`/professores/${item.id}`} >
+                                <button className={estilo.editar}>Editar</button>
+                            </Link>
+                            </td>
                             <td><button className={estilo.deletar} onClick={() =>deletarDado(item.id)}>Deletar</button></td>
                         </tr>
                     ))}
